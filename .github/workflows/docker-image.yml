@@ -11,5 +11,17 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag leonardosartorello/seguranca_docker:${{ github.run_number }}
+      run: docker build . --file Dockerfile --tag rgrsousa/seguranca_docker:${{ github.run_number }}
+
+    - name: Docker Scout
+  # You may pin to the exact commit or the version.
+  # uses: docker/scout-action@f8c776824083494ab0d56b8105ba2ca85c86e4de
+      uses: docker/scout-action@v1.18.2
+      with:
+        image: rgrsousa/seguranca_docker:${{ github.run_number }}
+        ignore-base: false # optional
+        dockerhub-user: ${{ secrets.DOCKERHUB_USER }}
+        dockerhub-password: ${{ secrets.DOCKERHUB_PASS }}
+         
+                
 
