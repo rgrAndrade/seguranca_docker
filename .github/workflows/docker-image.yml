@@ -24,6 +24,22 @@ jobs:
         ignore-base: false # optional
         dockerhub-user: ${{ secrets.DOCKERHUB_USER }}
         dockerhub-password: ${{ secrets.DOCKERHUB_PASS }}
+  
+
+
+    - name: Aqua Security Trivy
+       # You may pin to the exact commit or the version.
+       # uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8
+      uses: aquasecurity/trivy-action@0.33.1
+      with:
+        image-ref: rgrsousa/seguranca_docker:${{ github.run_number }}
+        exit-code: 1 # optional
+        severity: HIGH,CRITICAL
+        # output format (table, json, template)
+        format: table # optional, default is table
+         
+          
+                 
          
                 
 
